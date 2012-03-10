@@ -1618,17 +1618,24 @@ enum GCDAsyncSocketConfig
 			// Query delegate for custom socket queue
 			
 			dispatch_queue_t childSocketQueue = NULL;
+			dispatch_queue_t childDelegateQueue = delegateQueue;
+			id childDelegate = delegate;
 			
 			if ([theDelegate respondsToSelector:@selector(newSocketQueueForConnectionFromAddress:onSocket:)])
 			{
 				childSocketQueue = [theDelegate newSocketQueueForConnectionFromAddress:childSocketAddress
 				                                                              onSocket:self];
 			}
+
+			if ([theDelegate respondsToSelector:@selector(socket:willAcceptNewSocketWithDelegate:delegateQueue:socketQueue:)])
+			{
+				[theDelegate socket:self willAcceptNewSocketWithDelegate:&childDelegate delegateQueue:&childDelegateQueue socketQueue:&childSocketQueue];
+			}
 			
 			// Create GCDAsyncSocket instance for accepted socket
 			
-			GCDAsyncSocket *acceptedSocket = [[GCDAsyncSocket alloc] initWithDelegate:delegate
-			                                                            delegateQueue:delegateQueue
+			GCDAsyncSocket *acceptedSocket = [[GCDAsyncSocket alloc] initWithDelegate:childDelegate
+			                                                            delegateQueue:childDelegateQueue
 			                                                              socketQueue:childSocketQueue];
 			
 			if (isIPv4)

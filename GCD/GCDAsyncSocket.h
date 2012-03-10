@@ -864,6 +864,13 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (dispatch_queue_t)newSocketQueueForConnectionFromAddress:(NSData *)address onSocket:(GCDAsyncSocket *)sock;
 
 /**
+ * Called just after -newSocketQueueForConnectionFromAddress:onSocket: to let the delegate configure the child socket's delegate and delegate queue, as well as the socket queue.
+ *
+ * If you change socketQueue, it will override the previous setting.
+ */
+- (void)socket:(GCDAsyncSocket *)sock willAcceptNewSocketWithDelegate:(id*)delegate delegateQueue:(dispatch_queue_t*)delegateQueue socketQueue:(dispatch_queue_t*)socketQueue;
+
+/**
  * Called when a socket accepts a connection.
  * Another socket is automatically spawned to handle it.
  * 
