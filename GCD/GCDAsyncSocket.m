@@ -6433,7 +6433,9 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 	
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    #pragma deploymate push "ignored-api-availability"
 	value = [tlsSettings objectForKey:(NSString *)kCFStreamSSLAllowsAnyRoot];
+    #pragma deploymate pop
 	#pragma clang diagnostic pop
 	if (value)
 	{
@@ -6448,7 +6450,9 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 	
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    #pragma deploymate push "ignored-api-availability"
 	value = [tlsSettings objectForKey:(NSString *)kCFStreamSSLAllowsExpiredRoots];
+    #pragma deploymate pop
 	#pragma clang diagnostic pop
 	if (value)
 	{
@@ -6463,7 +6467,9 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 	
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    #pragma deploymate push "ignored-api-availability"
 	value = [tlsSettings objectForKey:(NSString *)kCFStreamSSLValidatesCertificateChain];
+    #pragma deploymate pop
 	#pragma clang diagnostic pop
 	if (value)
 	{
@@ -6478,7 +6484,9 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 	
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    #pragma deploymate push "ignored-api-availability"
 	value = [tlsSettings objectForKey:(NSString *)kCFStreamSSLAllowsExpiredCertificates];
+    #pragma deploymate pop
 	#pragma clang diagnostic pop
 	if (value)
 	{
@@ -6493,7 +6501,9 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 	
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    #pragma deploymate push "ignored-api-availability"
 	value = [tlsSettings objectForKey:(NSString *)kCFStreamSSLLevel];
+    #pragma deploymate pop
 	#pragma clang diagnostic pop
 	if (value)
 	{
