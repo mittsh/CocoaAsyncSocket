@@ -6896,7 +6896,7 @@ static OSStatus SSLWriteFunction(SSLConnectionRef connection, const void *data, 
 		for (cipherIndex = 0; cipherIndex < numberCiphers; cipherIndex++)
 		{
 			NSNumber *cipherObject = [cipherSuites objectAtIndex:cipherIndex];
-			ciphers[cipherIndex] = [cipherObject shortValue];
+			ciphers[cipherIndex] = [cipherObject unsignedIntValue];
 		}
 		
 		status = SSLSetEnabledCiphers(sslContext, ciphers, numberCiphers);
